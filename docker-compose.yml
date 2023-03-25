@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:latest
+    restart: unless-stopped
+    ports:
+      - "${LOCAL_PORT}:1433"
+    volumes:
+      - ${LOCAL_DATA_DIR}:/var/opt/mssql/data
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=${SA_PASSWORD}
+      - MSSQL_PID=${EDITION}
